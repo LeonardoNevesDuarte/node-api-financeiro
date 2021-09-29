@@ -1,4 +1,4 @@
-# php-api
+# node-api
 
 ## Índice
 * [Informações gerais](#informações-gerais)
