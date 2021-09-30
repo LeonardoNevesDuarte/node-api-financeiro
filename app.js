@@ -7,6 +7,9 @@ const objGeraCNPJ = require('./scripts/geraCNPJ');
 const objValidaCNPJ = require('./scripts/validaCNPJ');
 const objCalculaVF = require('./scripts/calculaVF');
 const objCalculaVP = require('./scripts/calculaVP');
+const objCalculaPAGTO = require('./scripts/calculaPAGTO');
+const objCalculaPRICE = require('./scripts/calculaPRICE');
+const objCalculaSAC = require('./scripts/calculaSAC');
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -44,6 +47,18 @@ app.get('/calculaVF', function (req, res) {
 
 app.get('/calculaVP', function (req, res) {
     res.json(objCalculaVP.doCalculaVP(req.body));
+});
+
+app.get('/calculaPAGTO', function (req, res) {
+    res.json(objCalculaPAGTO.doCalculaPAGTO(req.body));
+});
+
+app.get('/calculaPRICE', function (req, res) {
+    res.json(objCalculaPRICE.doCalculaPRICE(req.body));
+});
+
+app.get('/calculaSAC', function (req, res) {
+    res.json(objCalculaSAC.doCalculaSAC(req.body));
 });
 
 app.listen(port);

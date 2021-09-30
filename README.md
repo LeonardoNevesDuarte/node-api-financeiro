@@ -7,6 +7,9 @@
 * [Validador de CPF](#validaCPF)
 * [Gerador de CNPJ](#geraCNPJ)
 * [Validador de CNPJ](#validaCNPJ)
+* [Cálculo de Financiamento PRICE](#calculaPRICE)
+* [Cálculo de Financiamento SAC](#calculaSAC)
+* [Cálculo de Prestação](#calculaPAGTO)
 * [Cálculo de Valor Futuro](#calculaVF)
 * [Cálculo de Valor Presente](#calculaVP)
 * [Setup](#setup)
@@ -91,6 +94,83 @@
     "statCode": "<status code>",
     "statMsg": "<status message>",
     "result": [#,#] onde # = 0 para CNPJ inválido e 1 para CNPJ válido 
+}
+```
+* Os stat codes e messages podem ser vistos em include/std_messages_api.js
+
+
+## calculaPRICE
+* Arquivo: calculaPRICE.js
+* Calculo de financiamento por tabela PRICE - Sistema Frances de Amortizacao
+* URL: http://.../calculaPRICE
+* Body => JSON
+```
+ { "authKey":"", "param": [vl, i, n]} Ex.: { "authKey":"", "param": [1000, 1.5, 12]}
+```
+* onde vl = valor financiado / i = taxa de juros / n = numero de periodos
+* Method: GET ou POST
+* Retorno:
+```
+{
+    "statCode": "<status code>",
+    "statMsg": "<status message>",
+    "result": [
+        [
+            ###,        Numero da parcela
+            ###.##,     Vl. da Prestação
+            ###.##,     Vl. da Amortização
+            ###.##,     Vl dos Juros
+            ###.##      Saldo devedor
+        ],[...]
+        ]
+}
+```
+* Os stat codes e messages podem ser vistos em include/std_messages_api.js
+
+## calculaSAC
+* Arquivo: calculaSAC.js
+* Calculo de financiamento por tabela SAC
+* URL: http://.../calculaSAC
+* Body => JSON
+```
+{ "authKey":"", "param": [vl, i, n]} Ex.: { "authKey":"", "param": [1000, 1.5, 12]}
+```
+* onde vl = valor financiado / i = taxa de juros / n = numero de periodos
+* Method: GET ou POST
+* Retorno:
+```
+{
+    "statCode": "<status code>",
+    "statMsg": "<status message>",
+    "result": [
+        [
+            ###,        Numero da parcela
+            ###.##,     Vl. da Prestação
+            ###.##,     Vl. da Amortização
+            ###.##,     Vl dos Juros
+            ###.##      Saldo devedor
+        ],[...]
+        ]
+}
+```
+* Os stat codes e messages podem ser vistos em include/std_messages_api.js
+
+## calculaPAGTO
+* Arquivo: calculaPAGTO.js
+* Cálculo financeiro para valor de Prestação
+* URL: http://.../calculaPAGTO
+* Body => JSON 
+```
+{ "authKey":"", "param": [vl, i, n]} Ex.: { "authKey":"", "param": [1000, 1.5, 12]}
+```
+* onde vl = valor financiado / i = taxa de juros / n = numero de periodos
+* Method: GET ou POST
+* Retorno:
+```
+{
+    "statCode": "<status code>",
+    "statMsg": "<status message>",
+    "result": #####.## correspondente ao valor da prestação
 }
 ```
 * Os stat codes e messages podem ser vistos em include/std_messages_api.js
