@@ -5,6 +5,8 @@ const objGeraCPF = require('./scripts/geraCPF');
 const objValidaCPF = require('./scripts/validaCPF');
 const objGeraCNPJ = require('./scripts/geraCNPJ');
 const objValidaCNPJ = require('./scripts/validaCNPJ');
+const objCalculaVF = require('./scripts/calculaVF');
+const objCalculaVP = require('./scripts/calculaVP');
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -34,6 +36,14 @@ app.get('/geraCNPJ', function (req, res) {
 
 app.get('/validaCNPJ', function (req, res) {
     res.json(objValidaCNPJ.doValidaCNPJ(req.body));
+});
+
+app.get('/calculaVF', function (req, res) {
+    res.json(objCalculaVF.doCalculaVF(req.body));
+});
+
+app.get('/calculaVP', function (req, res) {
+    res.json(objCalculaVP.doCalculaVP(req.body));
 });
 
 app.listen(port);

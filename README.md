@@ -7,6 +7,8 @@
 * [Validador de CPF](#validaCPF)
 * [Gerador de CNPJ](#geraCNPJ)
 * [Validador de CNPJ](#validaCNPJ)
+* [Cálculo de Valor Futuro](#calculaVF)
+* [Cálculo de Valor Presente](#calculaVP)
 * [Setup](#setup)
 
 ## Informações Gerais
@@ -89,6 +91,46 @@
     "statCode": "<status code>",
     "statMsg": "<status message>",
     "result": [#,#] onde # = 0 para CNPJ inválido e 1 para CNPJ válido 
+}
+```
+* Os stat codes e messages podem ser vistos em include/std_messages_api.js
+
+## calculaVF
+* Arquivo: calculaVF.js
+* Cálculo financeiro para Valor Futuro
+* URL: http://.../calculaVF
+* Body => JSON 
+```
+{ "authKey":"", "param": [vp, i, n]} Ex.: { "authKey":"", "param": [vp, i, n]}
+```
+* onde vp = valor presente / i = taxa de juros / n = numero de periodos
+* Method: GET ou POST
+* Retorno:
+```
+{
+    "statCode": "<status code>",
+    "statMsg": "<status message>",
+    "result": ####.## correspondente ao valor futuro
+}
+```
+* Os stat codes e messages podem ser vistos em include/std_messages_api.js
+ 
+## calculaVP
+* Arquivo: calculaVP.js
+* Cálculo financeiro para Valor Presente
+* URL: http://.../calculaVP
+* Body => JSON
+```
+{ "authKey":"", "param": [vf, i, n]} Ex.: { "authKey":"", "param": [vf, i, n]}
+```
+* onde vf = valor futuro / i = taxa de juros / n = numero de periodos
+* Method: GET ou POST
+* Retorno:
+```
+{
+    "statCode": "<status code>",
+    "statMsg": "<status message>",
+    "result": ####.## correspondente ao valor presente
 }
 ```
 * Os stat codes e messages podem ser vistos em include/std_messages_api.js
